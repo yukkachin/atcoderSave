@@ -1,0 +1,222 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2023年7月23日(7月第３週)"
+      ],
+      "metadata": {
+        "id": "WlW4xiTukuJo"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "トヨタ自動車プログラミングコンテスト2023#4(AtCoder Beginner Contest 311)"
+      ],
+      "metadata": {
+        "id": "aG3pm5zJdwih"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#A問題\n",
+        "\n",
+        "n=int(input())\n",
+        "s=input()\n",
+        "\n",
+        "ac=0\n",
+        "bc=0\n",
+        "cc=0\n",
+        "\n",
+        "for i in range(len(s)):\n",
+        "\n",
+        "  if ac < 1:\n",
+        "    if s[i] == \"A\":\n",
+        "      ac += 1\n",
+        "\n",
+        "  if bc < 1:\n",
+        "\n",
+        "    if s[i] == \"B\":\n",
+        "      bc += 1\n",
+        "  if cc < 1:\n",
+        "\n",
+        "    if s[i] == \"C\":\n",
+        "      cc += 1\n",
+        "\n",
+        "  if ac>0 and bc>0 and cc>0:\n",
+        "\n",
+        "    print(i+1)\n",
+        "    break"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IbK1IgF4bAeg",
+        "outputId": "54e95650-62d0-4683-87b0-15d71f51ec0d"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "30\n",
+            "AABABBBABABBABABCABACAABCBACCA\n",
+            "17\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#B問題\n",
+        "n,d = map(int,input().split())\n",
+        "s = [input() for i in range(n)]\n",
+        "cnt =0\n",
+        "days=[]\n",
+        "\n",
+        "for i in range(d):\n",
+        "  check = 0\n",
+        "  for j in range(n):\n",
+        "    if s[j][i] == \"o\":\n",
+        "      check += 1\n",
+        "    else:\n",
+        "      cnt=0\n",
+        "      break\n",
+        "  if check == n:\n",
+        "    cnt+=1\n",
+        "    days.append(cnt)\n",
+        "\n",
+        "if len(days) > 0:\n",
+        "  print(max(days))\n",
+        "else:\n",
+        "  print(0)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "L7UQ1FG9d2H6",
+        "outputId": "d0f70938-d849-44a1-ca8c-404b45a348bf"
+      },
+      "execution_count": 31,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3 3\n",
+            "xxx\n",
+            "xxx\n",
+            "xxx\n",
+            "0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "freee プログラミングコンテスト2023（AtCoder Beginner Contest 310）"
+      ],
+      "metadata": {
+        "id": "yD-oC1-1lDBf"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#B問題\n",
+        "n,m = map(int,input().split())\n",
+        "p = []\n",
+        "f = []\n",
+        "flag = 0\n",
+        "\n",
+        "for i in range (n):\n",
+        "  l = list(map(int,input().split()))\n",
+        "  p.append(l[0])\n",
+        "  f.append(l[2:])\n",
+        "\n",
+        "for j in range(n):\n",
+        "    for k in range(n):\n",
+        "\n",
+        "      #商品jが商品kの上位互換か調べる\n",
+        "\n",
+        "      #まずは機能数から\n",
+        "      kcheck = 0\n",
+        "      for q in range(len(f[k])):\n",
+        "        if f[k][q] in f[j]:\n",
+        "          kcheck += 1\n",
+        "        else:\n",
+        "          break\n",
+        "      #kの機能を全てjが持っていた時\n",
+        "      if kcheck == len(f[k]):\n",
+        "        if p[k]>=p[j]: #価格チェック\n",
+        "          if len(f[k])<len(f[j]) or p[k]>p[j]: #特別な機能があるか、より安いか\n",
+        "            print( \"Yes\")\n",
+        "            flag = 1\n",
+        "            break\n",
+        "    if flag == 1:\n",
+        "      break\n",
+        "if flag == 0:\n",
+        "  print(\"No\")\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "N-g8zKHYdX5P",
+        "outputId": "891c58a3-3529-4c05-9335-1d169f6aa0ad"
+      },
+      "execution_count": 42,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "20 10\n",
+            "72036 3 3 4 9\n",
+            "7716 4 1 2 3 6\n",
+            "54093 5 1 6 7 8 10\n",
+            "25517 7 3 4 5 6 7 9 10\n",
+            "96930 8 2 3 4 6 7 8 9 10\n",
+            "47774 6 2 4 5 6 7 9\n",
+            "36959 5 1 3 4 5 8\n",
+            "46622 7 1 2 3 5 6 8 10\n",
+            "34315 9 1 3 4 5 6 7 8 9 10\n",
+            "54129 7 1 3 4 6 7 8 9\n",
+            "4274 5 2 4 7 9 10\n",
+            "16578 5 2 3 6 7 9\n",
+            "61809 4 1 2 4 5\n",
+            "1659 5 3 5 6 9 10\n",
+            "59183 5 1 2 3 4 9\n",
+            "22186 4 3 5 6 8\n",
+            "98282 4 1 4 7 10\n",
+            "72865 8 1 2 3 4 6 8 9 10\n",
+            "33796 6 1 3 5 7 9 10\n",
+            "74670 4 1 2 6 8\n",
+            "Yes\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Colaboratory へようこそ",
+      "provenance": []
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
